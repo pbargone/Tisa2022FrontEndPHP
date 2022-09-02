@@ -95,7 +95,9 @@ try{
                                             <td><?php echo $empleado->localidad;?></td> 
                                             <td><?php echo $empleado->provincia;?></td> 
                                             <td><?php echo $empleado->email;?></td> 
-                                            <td><button class="btn btn-primary" type="button" data-dismiss="modal">editar</button></td> 
+                                            <td><a href="empleado/edt_empleado.php?id=<?php echo $empleado->id_empleado;?>">
+                                                <button class="btn btn-primary" type="button" data-dismiss="modal">editar</button></td> 
+                                                </a>
                                         </tr>  
                                     <?php }?>                                      
                                     </tbody>

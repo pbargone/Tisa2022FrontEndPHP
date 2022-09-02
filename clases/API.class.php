@@ -27,6 +27,7 @@ class API {
 			//var_dump($logindata);
 			$_SESSION['TISA_TOKEN'] = $logindata->data->token;
 			$_SESSION['TISA_USERNAME'] = $usuario;
+			$_SESSION['S_CONFIG_ROOT_SITE'] = CONFIG_ROOT_SITE;
 			return $logindata->data->login_status;
 		}catch (RequestException $e){			
             	$this->StatusCodeHandling("login",$e);         
@@ -44,7 +45,7 @@ class API {
 			$respuesta = json_decode($res->getBody(true)->getContents());			
 			return $respuesta->data;			
 		}catch (RequestException $e){			
-            	$this->StatusCodeHandling("login",$e);         
+            	$this->StatusCodeHandling("/usuario/all",$e);         
 		}
 
 	 }
@@ -59,11 +60,26 @@ class API {
 			$respuesta = json_decode($res->getBody(true)->getContents());			
 			return $respuesta->data;			
 		}catch (RequestException $e){			
-            	$this->StatusCodeHandling("login",$e);         
+            	$this->StatusCodeHandling("/empleado/all",$e);         
 		}
 
 	 }
 
+
+	public function getEmpleadoById($id){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']
+		   ];			
+		   $request = new Request('GET', API_URL.'/empleado/'.$id, $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->data;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/empleado/id",$e);         
+	   }
+
+	}
 	 // arma las excepciones por errores de http status
 	 public function StatusCodeHandling($endPoint,$e){	 		
 			$response = json_decode($e->getResponse()->getBody(true)->getContents());
@@ -71,7 +87,12 @@ class API {
 			if(isset($response->status_msg)){
 				throw new Exception(" API $endPoint : ".$response->status_msg); 
 			}else{
-				throw new Exception(" API $endPoint : ssss".$e->getMessage()); 
+				if($e->getResponse()->getStatusCode()==404){
+					throw new Exception(" API $endPoint : No se encuentra la ruta"); 
+				}else{
+					throw new Exception(" API $endPoint : ".$e->getMessage()); 
+				}
+				
 			}
 	 }
 

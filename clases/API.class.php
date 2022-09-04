@@ -1,6 +1,4 @@
 <?php
-session_start();
-require_once("config/constantes.php");
 require 'vendor/autoload.php';
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
@@ -14,6 +12,7 @@ class API {
 		$this->clienteApi = new Client();
 	}
 
+	////////////// USUARIOS
 	public function login($usuario, $password){
 	 	try{			
 			$headers = ['Content-Type' => 'application/json'];
@@ -26,7 +25,7 @@ class API {
 			$logindata = json_decode($res->getBody(true)->getContents());
 			//var_dump($logindata);
 			$_SESSION['TISA_TOKEN'] = $logindata->data->token;
-			$_SESSION['TISA_USERNAME'] = $usuario;
+			$_SESSION['TISA_USERNAME'] = $usuario;			
 			return $logindata->data->login_status;
 		}catch (RequestException $e){			
             	$this->StatusCodeHandling("login",$e);         
@@ -44,11 +43,12 @@ class API {
 			$respuesta = json_decode($res->getBody(true)->getContents());			
 			return $respuesta->data;			
 		}catch (RequestException $e){			
-            	$this->StatusCodeHandling("login",$e);         
+            	$this->StatusCodeHandling("/usuario/all",$e);         
 		}
 
 	 }
-
+	 ////////////// FIN USUARIOS
+	 ////////////// EMPLEADOS
 	 public function getEmpleadosAll(){
 	 	try{			
 			$headers = [
@@ -59,11 +59,89 @@ class API {
 			$respuesta = json_decode($res->getBody(true)->getContents());			
 			return $respuesta->data;			
 		}catch (RequestException $e){			
-            	$this->StatusCodeHandling("login",$e);         
+            	$this->StatusCodeHandling("/empleado/all",$e);         
 		}
 
 	 }
 
+
+	public function getEmpleadoById($id){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']
+		   ];			
+		   $request = new Request('GET', API_URL.'/empleado/'.$id, $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->data;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/empleado/id",$e);         
+	   }
+
+	}
+
+	public function crearEmpleado($jsonEmpleado){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
+			 'Content-Type' => 'application/json'
+		   ];		   
+		   $request = new Request('POST', API_URL.'/empleado', $headers, $jsonEmpleado);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->status_msg;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/empleado/",$e);         
+	   }
+
+	}
+	public function actualizarEmpleado($jsonEmpleado){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
+			 'Content-Type' => 'application/json'
+		   ];			
+		   $request = new Request('PUT', API_URL.'/empleado', $headers, $jsonEmpleado);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->status_msg;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/empleado/",$e);         
+	   }
+
+	}
+	
+	public function borrarEmpleado($id){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']			 
+		   ];			
+		   $request = new Request('DELETE', API_URL.'/empleado/'.$id, $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->status_msg;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/empleado/",$e);         
+	   }
+
+	}
+	////////////// FIN EMPLEADOS
+	////////////// FIN MISCELANEAS
+	public function getProvincias(){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']
+		   ];			
+		   $request = new Request('GET', API_URL.'/misc/provincia/all', $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->data;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/empleado/id",$e);         
+	   }
+
+	}
+	////////////// FIN MISCELANEAS
 	 // arma las excepciones por errores de http status
 	 public function StatusCodeHandling($endPoint,$e){	 		
 			$response = json_decode($e->getResponse()->getBody(true)->getContents());
@@ -71,7 +149,12 @@ class API {
 			if(isset($response->status_msg)){
 				throw new Exception(" API $endPoint : ".$response->status_msg); 
 			}else{
-				throw new Exception(" API $endPoint : ssss".$e->getMessage()); 
+				if($e->getResponse()->getStatusCode()==404){
+					throw new Exception(" API $endPoint : No se encuentra la ruta "); 
+				}else{
+					throw new Exception(" API $endPoint : ".$e->getMessage()); 
+				}
+				
 			}
 	 }
 

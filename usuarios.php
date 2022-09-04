@@ -1,7 +1,6 @@
 <?php
-require_once("config/constantes.php");
-require 'clases/API.class.php';
-include_once HEADER_FILE;
+
+require_once("accesscontrol.php");
 $ErrorMsg = "";
 try{
         $oApi = new API();

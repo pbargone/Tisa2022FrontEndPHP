@@ -1,7 +1,8 @@
 <?php
-require_once("config/constantes.php");
-require 'clases/API.class.php';
-include_once HEADER_FILE;
+
+require_once("accesscontrol.php");
+
+
 $ErrorMsg = "";
 try{
         $oApi = new API();
@@ -52,7 +53,11 @@ try{
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Usuarios del sistema</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Empleados registrados </h6>
+                            <a href="index.php?seccion=empleado/edt_empleado.php&id=0">
+                                                <button class="btn btn-primary" type="button" >+ crear</button></td> 
+                                                </a>
+
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -95,9 +100,13 @@ try{
                                             <td><?php echo $empleado->localidad;?></td> 
                                             <td><?php echo $empleado->provincia;?></td> 
                                             <td><?php echo $empleado->email;?></td> 
-                                            <td><a href="empleado/edt_empleado.php?id=<?php echo $empleado->id_empleado;?>">
-                                                <button class="btn btn-primary" type="button" data-dismiss="modal">editar</button></td> 
+                                            <td><a href="index.php?seccion=empleado/edt_empleado.php&id=<?php echo $empleado->id_empleado;?>">
+                                                <button class="btn btn-primary" type="button" >editar</button>
                                                 </a>
+                                                <a href="index.php?seccion=empleado/empleado_save.php&id_empleado=<?php echo $empleado->id_empleado;?>">
+                                                <button class="btn btn-danger" type="button" ><img src="img/trash.png"/></button>
+                                                </a>
+                                                </td> 
                                         </tr>  
                                     <?php }?>                                      
                                     </tbody>
@@ -108,6 +117,4 @@ try{
 
                 </div>
                 <!-- /.container-fluid -->
-
-<?php } 
-include_once FOOTER_FILE;?>
+<?php }?> 

@@ -1,6 +1,3 @@
-<?php
-require_once("accesscontrol.php");
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,7 +50,7 @@ require_once("accesscontrol.php");
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">                        
-                        <a class="collapse-item" href="usuarios.php">Administrar de usuarios</a>
+                        <a class="collapse-item" href="index.php?seccion=usuarios.php">Administrar de usuarios</a>
                     </div>
                 </div>
             </li>
@@ -69,7 +66,7 @@ require_once("accesscontrol.php");
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         
-                        <a class="collapse-item" href="empleados.php">Administrar empleados</a>
+                        <a class="collapse-item" href="index.php?seccion=empleados.php">Administrar empleados</a>
                         
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 <?php
-//session_start();
-    require 'clases/API.class.php';
+session_start();
+    require_once("config/constantes.php");
+    require_once("clases/API.class.php");
     $accion = "";
     $usuario = "";
     $password = "";

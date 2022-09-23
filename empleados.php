@@ -47,15 +47,24 @@ try{
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
+					<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="./index.php">Inicio</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Administración de Empleados</li>
+    </ol>
+</nav>
+					
                     <h1 class="h3 mb-2 text-gray-800">Administración de empleados</h1>
                     <p class="mb-4"> </p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Empleados registrados </h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Empleados registrados 
+							<button class="btn btn-primary" type="button" >+ crear</button></td> </h6> 
+							
                             <a href="index.php?seccion=empleado/edt_empleado.php&id=0">
-                                                <button class="btn btn-primary" type="button" >+ crear</button></td> 
+                                                
                                                 </a>
 
                         </div>
@@ -100,12 +109,41 @@ try{
                                             <td><?php echo $empleado->localidad;?></td> 
                                             <td><?php echo $empleado->provincia;?></td> 
                                             <td><?php echo $empleado->email;?></td> 
-                                            <td><a href="index.php?seccion=empleado/edt_empleado.php&id=<?php echo $empleado->id_empleado;?>">
-                                                <button class="btn btn-primary" type="button" >editar</button>
+                                            <td>
+											
+											<div class=btn-group>
+											
+											
+												
+																								
+												<a class='btn btn-outline-success' href="index.php?seccion=empleado/edt_empleado.php&id=<?php echo $empleado->id_empleado;?>"" data-toggle="modal" 
+                                                data-toggle="tooltip" data-placement="bottom" title=" Editar "
+                                                
+                                                <i class="fas fa-pencil-alt mr-1 ml-1"> <img src="img/pencil.png"/> </i>
+												</a>
+																					
+                                                <a class='btn btn-outline-danger' href="index.php?seccion=empleado/empleado_save.php&id_empleado=<?php echo $empleado->id_empleado;?>"" data-toggle="modal" 
+                                                data-toggle="tooltip" data-placement="bottom" title=" Borrar "
+                                                <i class="fas fa-trash-alt mr-1 ml-1"> <img src="img/trash.png"/> </i>
+												</a>
+												
+												
+												<!--
+												<a href="index.php?seccion=empleado/edt_empleado.php&id=  
+												<?php // echo $empleado->id_empleado;?>">
+                                                <button class="btn btn-primary" type="button" >editar </button>
                                                 </a>
-                                                <a href="index.php?seccion=empleado/empleado_save.php&id_empleado=<?php echo $empleado->id_empleado;?>">
-                                                <button class="btn btn-danger" type="button" ><img src="img/trash.png"/></button>
-                                                </a>
+												
+												<a href="index.php?seccion=empleado/empleado_save.php&id_empleado=<?php //echo $empleado->id_empleado;?>"> 
+                                                <button class="btn btn-danger" type="button" > <img src="img/trash.png"/> </button> 
+                                                </a> 
+												-->
+												
+												
+												
+												
+												</div>
+												
                                                 </td> 
                                         </tr>  
                                     <?php }?>                                      

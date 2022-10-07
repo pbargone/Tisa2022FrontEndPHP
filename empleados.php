@@ -50,7 +50,7 @@ try{
 					<nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="./index.php">Inicio</a></li>
-		<li class="breadcrumb-item active" aria-current="page">Administración de Empleados</li>
+		<li class="breadcrumb-item active" aria-current="page">Administración de empleados</li>
     </ol>
 </nav>
 					
@@ -61,12 +61,14 @@ try{
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Empleados registrados 
-							<button class="btn btn-primary" type="button" >+ crear</button></td> </h6> 
 							
-                            <a href="index.php?seccion=empleado/edt_empleado.php&id=0">
-                                                
-                                                </a>
-
+							<a class="btn btn-outline-primary" href="index.php?seccion=empleado/edt_empleado.php&id=0"
+                            data-toggle="tooltip" data-placement="bottom" title=" Nuevo ">
+                            <i class="fas fa-user-plus"> </i>
+								</a>					
+							</h6> 
+							 
+                          
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -112,40 +114,45 @@ try{
                                             <td>
 											
 											<div class=btn-group>
-											
-											
 												
-																								
-												<a class='btn btn-outline-success' href="index.php?seccion=empleado/edt_empleado.php&id=<?php echo $empleado->id_empleado;?>"" data-toggle="modal" 
-                                                data-toggle="tooltip" data-placement="bottom" title=" Editar "
-                                                
-                                                <i class="fas fa-pencil-alt mr-1 ml-1"> <img src="img/pencil.png"/> </i>
-												</a>
-																					
-                                                <a class='btn btn-outline-danger' href="index.php?seccion=empleado/empleado_save.php&id_empleado=<?php echo $empleado->id_empleado;?>"" data-toggle="modal" 
-                                                data-toggle="tooltip" data-placement="bottom" title=" Borrar "
-                                                <i class="fas fa-trash-alt mr-1 ml-1"> <img src="img/trash.png"/> </i>
+												<a class="btn btn-outline-success" href="index.php?seccion=empleado/edt_empleado.php&id=<?php echo $empleado->id_empleado;?>"
+                                                data-toggle="tooltip" data-placement="bottom" title=" Editar ">
+                                                <i class="fas fa-pencil-alt"> </i>
 												</a>
 												
-												
-												<!--
-												<a href="index.php?seccion=empleado/edt_empleado.php&id=  
-												<?php // echo $empleado->id_empleado;?>">
-                                                <button class="btn btn-primary" type="button" >editar </button>
-                                                </a>
-												
-												<a href="index.php?seccion=empleado/empleado_save.php&id_empleado=<?php //echo $empleado->id_empleado;?>"> 
-                                                <button class="btn btn-danger" type="button" > <img src="img/trash.png"/> </button> 
-                                                </a> 
-												-->
-												
-												
-												
+											    <a class="btn btn-outline-danger" href="" data-toggle="modal" data-toggle="tooltip"
+												data-placement="bottom" title=" Borrar " data-target="#ModalEditar<?php echo $empleado->id_empleado; ?>">
+                                                <i class="fas fa-trash-alt"> </i>
+												</a>
 												
 												</div>
 												
                                                 </td> 
                                         </tr>  
+										
+														<!-- Modal Borrar -->
+                            <div class="modal fade" id="ModalEditar<?php echo $empleado->id_empleado; ?>" tabindex="-1" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Esta seguro de eliminar el Empleado?</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="POST" action="index.php?seccion=empleado/empleado_save.php&id_empleado=<?php echo $empleado->id_empleado;?>" autocomplete="off" enctype="multipart/form-data">
+                                                
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light btn-lg" data-dismiss="modal">Cerrar</button>
+                                                    <button type="submit" class="btn btn-outline-danger btn-lg"><i class="fas fa-trash-alt mr-2"></i>Elimimar</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+										
+										
+										
                                     <?php }?>                                      
                                     </tbody>
                                 </table>
@@ -155,4 +162,11 @@ try{
 
                 </div>
                 <!-- /.container-fluid -->
+				
+				
+
+				
+				
+				
+				
 <?php }?> 

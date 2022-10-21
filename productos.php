@@ -4,7 +4,8 @@ require_once("accesscontrol.php");
 $ErrorMsg = "";
 try{
         $oApi = new API();
-        $usuarios = $oApi->getUsuariosAll();            
+        $productos = $oApi->getProductosAll(); 
+        $rubros = $oApi->getRubrosAll();           
     }catch (Exception $e){
         $ErrorMsg =  $e->getMessage();
     }
@@ -45,13 +46,16 @@ try{
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Administración de usuarios</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Administración de productos</h1>
                     <p class="mb-4">   </p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Usuarios del sistema</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Productos del sistema</h6>
+                            <a href="index.php?seccion=producto/edt_producto.php&id=0">
+                                                <button class="btn btn-primary" type="button" >+ Crear producto</button></td> 
+                                                </a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -60,33 +64,41 @@ try{
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Usuario</th>
-                                            <th>Email</th>
-                                            <th>Activo</th>
-                                            <th>Perfil</th>
-                                            <th>Acciones</th>                                            
+                                            <th>Codigo</th>
+                                            <th>Producto</th>
+                                            <th>Detalle</th>
+                                            <th>Rubro</th>
+                                            <th>Acciones</th>
+
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Usuario</th>
-                                            <th>Email</th>
-                                            <th>Activo</th>
-                                            <th>Perfil</th>
-                                            <th>Acciones</th>                            
+                                            <th>Codigo</th>
+                                            <th>Producto</th>
+                                            <th>Detalle</th> 
+                                            <th>Rubro</th> 
+                                            <th>Acciones</th>                          
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                    <?php foreach($usuarios as $usuario){ ?>
+                                    <?php foreach($productos as $producto){ ?>
                                         <tr>
-                                            <td><?php echo $usuario->id_usuario;?></td>
-                                            <td><?php echo $usuario->usuario;?></td>
-                                            <td><?php echo $usuario->email;?></td>
-                                            <td><?php echo $usuario->activo;?></td>
-                                            <td><?php echo $usuario->perfil;?></td> 
-                                            <td><button class="btn btn-primary" type="button" data-dismiss="modal">Editar</button> 
-                                                <button class="btn btn-primary" type="button" data-dismiss="modal">Bloquear</button></td> 
+                                            <td><?php echo $producto->id_producto;?></td>
+                                            <td><?php echo $producto->codigo_producto;?></td>
+                                            <td><?php echo $producto->producto;?></td>
+                                            <td><?php echo $producto->detalle;?></td>
+
+                                            <td><?php foreach($rubros as $rubro){if($producto->id_rubro==$rubro->id_rubro)echo $rubro->rubro;}?></td>
+
+                                            <td><a href="index.php?seccion=producto/edt_producto.php&id=<?php echo $producto->id_producto;?>">
+                                                <button class="btn btn-primary" type="button" data-dismiss="modal">Editar</button> 
+                                                </a>
+                                                <a href="index.php?seccion=producto/producto_save.php&id_producto=<?php echo $producto->id_producto;?>">
+                                                <button class="btn btn-danger" type="button" ><img src="img/trash.png"/></button>
+                                                </a>
+                                            </td> 
                                         </tr>  
                                     <?php }?>                                      
                                     </tbody>

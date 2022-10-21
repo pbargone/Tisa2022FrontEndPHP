@@ -7,32 +7,26 @@ $Msg = "Datos guardados correctamente";
 try{
         
         // valido lo recibido del form
-        if (isset($_POST["id_empleado"])){
-            if(empty($_POST["cod_provincia"])){
-                $_POST["cod_provincia"] = null;
-            }
-            $jsonEmpleado = '{
-                                "id_empleado": '.$_POST["id_empleado"].',
-                                "nombre": "'.$_POST["nombre"].'",
-                                "apellido": "'.$_POST["apellido"].'",
-                                "calle": "'.$_POST["calle"].'",
-                                "numero_calle": "'.$_POST["numero_calle"].'",
-                                "localidad": "'.$_POST["localidad"].'",
-                                "cod_provincia": "'.$_POST["cod_provincia"].'",
-                                "email": "'.$_POST["email"].'"
+        if (isset($_POST["id_producto"])){
+            $jsonproducto = '{
+                                "id_producto": '.$_POST["id_producto"].',
+                                "codigo_producto": "'.$_POST["codigo_producto"].'",
+                                "producto": "'.$_POST["producto"].'",
+                                "detalle": "'.$_POST["detalle"].'",
+
                             }';
 
             $oApi = new API();
-            if (empty($_POST["id_empleado"])){
-                $oApi->crearEmpleado($jsonEmpleado); 
+            if (empty($_POST["id_producto"])){
+                $oApi->crearproducto($jsonproducto); 
             }else{
-                $oApi->actualizarEmpleado($jsonEmpleado); 
+                $oApi->actualizarproducto($jsonproducto); 
             }   
         }else{
-            if (isset($_GET["id_empleado"])){
+            if (isset($_GET["id_producto"])){
                 $oApi = new API();
-                $oApi->borrarEmpleado($_GET["id_empleado"]); 
-                $Msg = "El empleado se eliminó correctamente";
+                $oApi->borrarproducto($_GET["id_producto"]); 
+                $Msg = "El producto se eliminó correctamente";
             }else{
                 $Msg = "Faltan datos para completar la operación";
             }
@@ -65,7 +59,7 @@ try{
                 </div>
                 <div class="modal-body"><?php if (!empty($Msg)){echo $Msg;} ?></div>
                 <div class="modal-footer">
-                    <a href="index.php?seccion=empleados.php">
+                    <a href="index.php?seccion=productos.php">
                     <button class="btn btn-primary" type="button" >OK</button> 
                     </a>                   
                 </div>

@@ -4,7 +4,7 @@ require_once("accesscontrol.php");
 $ErrorMsg = "";
 try{
         $oApi = new API();
-        $usuarios = $oApi->getUsuariosAll();            
+        $rubros = $oApi->getRubrosAll();            
     }catch (Exception $e){
         $ErrorMsg =  $e->getMessage();
     }
@@ -45,13 +45,16 @@ try{
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Administración de usuarios</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Administración de rubros</h1>
                     <p class="mb-4">   </p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Usuarios del sistema</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Rubros</h6>
+                            <a href="index.php?seccion=rubro/edt_rubro.php&id=0">
+                                                <button class="btn btn-primary" type="button" >+ Crear rubro</button></td> 
+                                                </a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -60,33 +63,31 @@ try{
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Usuario</th>
-                                            <th>Email</th>
-                                            <th>Activo</th>
-                                            <th>Perfil</th>
-                                            <th>Acciones</th>                                            
+                                            <th>Rubro</th>
+                                            <th>Sigla</th>
+                                            <th>Acciones</th>
+
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Usuario</th>
-                                            <th>Email</th>
-                                            <th>Activo</th>
-                                            <th>Perfil</th>
-                                            <th>Acciones</th>                            
+                                            <th>Rubro</th>
+                                            <th>Sigla</th> 
+                                            <th>Acciones</th>                       
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                    <?php foreach($usuarios as $usuario){ ?>
+                                    <?php foreach($rubros as $rubro){ ?>
                                         <tr>
-                                            <td><?php echo $usuario->id_usuario;?></td>
-                                            <td><?php echo $usuario->usuario;?></td>
-                                            <td><?php echo $usuario->email;?></td>
-                                            <td><?php echo $usuario->activo;?></td>
-                                            <td><?php echo $usuario->perfil;?></td> 
+                                            <td><?php echo $rubro->id_rubro;?></td>
+                                            <td><?php echo $rubro->rubro;?></td>
+                                            <td><?php echo $rubro->sigla_rubro;?></td>
                                             <td><button class="btn btn-primary" type="button" data-dismiss="modal">Editar</button> 
-                                                <button class="btn btn-primary" type="button" data-dismiss="modal">Bloquear</button></td> 
+                                                </a>
+                                                <a href="index.php?seccion=rubro/edt_rubro.php&id=<?php echo $rubro->id_rubro;?>">
+                                                <button class="btn btn-danger" type="button" ><img src="img/trash.png"/></button>
+                                                </a>
                                         </tr>  
                                     <?php }?>                                      
                                     </tbody>

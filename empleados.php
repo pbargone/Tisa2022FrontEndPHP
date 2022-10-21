@@ -28,7 +28,7 @@ try{
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Error de cargando datos</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Error de carga de datos</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -55,7 +55,7 @@ try{
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Empleados registrados </h6>
                             <a href="index.php?seccion=empleado/edt_empleado.php&id=0">
-                                                <button class="btn btn-primary" type="button" >+ crear</button></td> 
+                                                <button class="btn btn-primary" type="button" >+ Crear empleado</button></td> 
                                                 </a>
 
                         </div>
@@ -101,7 +101,7 @@ try{
                                             <td><?php echo $empleado->provincia;?></td> 
                                             <td><?php echo $empleado->email;?></td> 
                                             <td><a href="index.php?seccion=empleado/edt_empleado.php&id=<?php echo $empleado->id_empleado;?>">
-                                                <button class="btn btn-primary" type="button" >editar</button>
+                                                <button class="btn btn-primary" type="button" >Editar</button>
                                                 </a>
                                                 <a href="index.php?seccion=empleado/empleado_save.php&id_empleado=<?php echo $empleado->id_empleado;?>">
                                                 <button class="btn btn-danger" type="button" ><img src="img/trash.png"/></button>

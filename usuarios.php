@@ -26,7 +26,7 @@ try{
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Error de cargando datos</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Error de carga de datos</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -80,7 +80,9 @@ try{
                                             <th>Usuario</th>
                                             <th>Email</th>
                                             <th>Activo</th>
+
                                             <th>Permiso</th>
+
                                             <th>Acciones</th>                                            
                                         </tr>
                                     </thead>
@@ -90,7 +92,9 @@ try{
                                             <th>Usuario</th>
                                             <th>Email</th>
                                             <th>Activo</th>
+
                                             <th>Permiso</th>
+
                                             <th>Acciones</th>                            
                                         </tr>
                                     </tfoot>
@@ -102,6 +106,7 @@ try{
                                             <td><?php echo $usuario->email;?></td>
                                             <td><?php echo $usuario->activo;?></td>
                                             <td><?php echo $usuario->perfil;?></td> 
+
                                             <td>
 											
 											<div class=btn-group>
@@ -124,6 +129,7 @@ try{
 											
 											
 											
+
                                         </tr>  
 									
 									<!-- Modal Borrar -->

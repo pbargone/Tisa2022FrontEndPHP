@@ -28,7 +28,7 @@ try{
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Error de cargando datos</h5>
+                    <h5 class="modal-title" id="exampleModalLabel"><?php echo $ErrorMsg;?> </h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -60,6 +60,7 @@ try{
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
+
                             <h6 class="m-0 font-weight-bold text-primary">Empleados registrados 
 							
 							<a class="btn btn-outline-primary" href="index.php?seccion=empleado/edt_empleado.php&id=0"
@@ -69,6 +70,7 @@ try{
 							</h6> 
 							 
                           
+
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -127,6 +129,7 @@ try{
 												
 												</div>
 												
+
                                                 </td> 
                                         </tr>  
 										

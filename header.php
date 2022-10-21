@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Tisa - tracksys</title>
+    <title>TISA - tracksys</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -50,7 +50,7 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">                        
-                        <a class="collapse-item" href="index.php?seccion=usuarios.php">Administrar de usuarios</a>
+                        <a class="collapse-item" href="index.php?seccion=usuarios.php">Administrar usuarios</a>
                     </div>
                 </div>
             </li>
@@ -71,6 +71,31 @@
                     </div>
                 </div>
             </li>
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProductos"
+                    aria-expanded="true" aria-controls="collapseProductos">
+                    <i class="fas fa-cart-plus"></i>
+                    <span>Productos</span>
+                </a>
+                <div id="collapseProductos" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        
+                        <a class="collapse-item" href="index.php?seccion=productos.php">Administrar productos</a>
+                        
+                    </div>
+                </div>
+                <div id="collapseProductos" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        
+                        <a class="collapse-item" href="index.php?seccion=rubros.php">Administrar rubros</a>
+                        
+                    </div>
+                </div>
+            </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">           
@@ -164,7 +189,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Cerrar sessión
+                                    Cerrar sesión
                                 </a>
                             </div>
                         </li>

@@ -158,5 +158,83 @@ class API {
 			}
 	 }
 
+	 ///////////PROVEEDORES
+	 public function getProveedoresAll(){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']
+		   ];			
+		   $request = new Request('GET', API_URL.'/proveedor/all', $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->data;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/proveedor/all",$e);         
+	   }
+
+	}
+
+	public function getProveedorById($id){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']
+		   ];			
+		   $request = new Request('GET', API_URL.'/proveedor/'.$id, $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->data;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/proveedor/id",$e);         
+	   }
+
+	}
+
+	public function crearProveedor($jsonProveedor){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
+			 'Content-Type' => 'application/json'
+		   ];		   
+		   $request = new Request('POST', API_URL.'/proveedor', $headers, $jsonProveedor);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->status_msg;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/proveedor/",$e);         
+	   }
+
+	}
+
+	public function actualizarProveedor($jsonProveedor){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
+			 'Content-Type' => 'application/json'
+		   ];			
+		   $request = new Request('PUT', API_URL.'/proveedor', $headers, $jsonProveedor);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->status_msg;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/proveedor/",$e);         
+	   }
+
+	}
+
+	public function borrarProveedor($id){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']			 
+		   ];			
+		   $request = new Request('DELETE', API_URL.'/proveedor/'.$id, $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->status_msg;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/proveedor/",$e);         
+	   }
+
+	}
+
 }
 ?>

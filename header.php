@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ES">
 
 <head>
 
@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Tisa - tracksys</title>
+    <title>Tisa - Forbenthon</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -33,12 +33,12 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    
                 </div>
-                <div class="sidebar-brand-text mx-3">TISA<br><sup>tracksys v1</sup></div>
+                <div class="sidebar-brand-text mx-3">Proyecto Tisa<br><sup></sup></div>
             </a>
 
-            <!-- Divider -->
+            <!-- Divider Divide el menú con una línea--> 
             <hr class="sidebar-divider my-0">            
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -70,32 +70,23 @@
                         
                     </div>
                 </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">           
+            </li>   
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Otro menú</span>
+                    <span>Proveedores</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Titulo menú A</h6>
-                        <a class="collapse-item" href="#">Sub menú A 1</a>
-                        <a class="collapse-item" href="#">Sub menú A 2</a>
-                        <a class="collapse-item" href="#">Sub menú A 3</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Titulo menú B</h6>
-                        <a class="collapse-item" href="#">Sub menú B 1</a>
-                        <a class="collapse-item" href="#">Sub menú B 2</a>
-                        <a class="collapse-item" href="#">Sub menú B 3</a>
+                        
+                        <a class="collapse-item" href="index.php?seccion=proveedores.php">Administrar Proveedores</a>
                     </div>
                 </div>
             </li>         
+        
 
             
         </ul>
@@ -132,7 +123,7 @@
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
                                         <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
+                                            placeholder="Search for..." aria-label="search"
                                             aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">

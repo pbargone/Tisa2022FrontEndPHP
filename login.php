@@ -60,7 +60,7 @@ session_start();
         </script>
     <?php } ?>
 </head>
-    <title>Tisa - tracksys</title>
+    <title>Tisa</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

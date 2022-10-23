@@ -28,7 +28,7 @@ try{
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Error de cargando datos</h5>
+                    <h5 class="modal-title" id="exampleModalLabel"><?php echo $ErrorMsg;?> </h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -47,16 +47,29 @@ try{
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
+					<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="./index.php">Inicio</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Administración de empleados</li>
+    </ol>
+</nav>
+					
                     <h1 class="h3 mb-2 text-gray-800">Administración de empleados</h1>
                     <p class="mb-4"> </p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Empleados registrados </h6>
-                            <a href="index.php?seccion=empleado/edt_empleado.php&id=0">
-                                                <button class="btn btn-primary" type="button" >+ crear</button></td> 
-                                                </a>
+
+                            <h6 class="m-0 font-weight-bold text-primary">Empleados registrados 
+							
+							<a class="btn btn-outline-primary" href="index.php?seccion=empleado/edt_empleado.php&id=0"
+                            data-toggle="tooltip" data-placement="bottom" title=" Nuevo ">
+                            <i class="fas fa-user-plus"> </i>
+								</a>					
+							</h6> 
+							 
+                          
 
                         </div>
                         <div class="card-body">
@@ -100,15 +113,49 @@ try{
                                             <td><?php echo $empleado->localidad;?></td> 
                                             <td><?php echo $empleado->provincia;?></td> 
                                             <td><?php echo $empleado->email;?></td> 
-                                            
-                                            <td><a href="index.php?seccion=empleado/edt_empleado.php&id=<?php echo $empleado->id_empleado;?>">
-                                                <button class="btn btn-primary" type="button" >editar</button>
-                                                </a>
-                                                <a href="index.php?seccion=empleado/empleado_save.php&id_empleado=<?php echo $empleado->id_empleado;?>">
-                                                <button class="btn btn-danger" type="button" ><img src="img/trash.png"/></button>
-                                                </a>
-                                            </td> 
+                                            <td>
+											
+											<div class=btn-group>
+												
+												<a class="btn btn-outline-success" href="index.php?seccion=empleado/edt_empleado.php&id=<?php echo $empleado->id_empleado;?>"
+                                                data-toggle="tooltip" data-placement="bottom" title=" Editar ">
+                                                <i class="fas fa-pencil-alt"> </i>
+												</a>
+												
+											    <a class="btn btn-outline-danger" href="" data-toggle="modal" data-toggle="tooltip"
+												data-placement="bottom" title=" Borrar " data-target="#ModalEditar<?php echo $empleado->id_empleado; ?>">
+                                                <i class="fas fa-trash-alt"> </i>
+												</a>
+												
+												</div>
+												
+
+                                                </td> 
                                         </tr>  
+										
+														<!-- Modal Borrar -->
+                            <div class="modal fade" id="ModalEditar<?php echo $empleado->id_empleado; ?>" tabindex="-1" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Esta seguro de eliminar el Empleado?</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="POST" action="index.php?seccion=empleado/empleado_save.php&id_empleado=<?php echo $empleado->id_empleado;?>" autocomplete="off" enctype="multipart/form-data">
+                                                
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light btn-lg" data-dismiss="modal">Cerrar</button>
+                                                    <button type="submit" class="btn btn-outline-danger btn-lg"><i class="fas fa-trash-alt mr-2"></i>Elimimar</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+										
+										
+										
                                     <?php }?>                                      
                                     </tbody>
                                 </table>
@@ -118,4 +165,11 @@ try{
 
                 </div>
                 <!-- /.container-fluid -->
+				
+				
+
+				
+				
+				
+				
 <?php }?> 

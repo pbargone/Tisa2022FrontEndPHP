@@ -77,7 +77,14 @@ if(isset($_GET["id"])){try{
        <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Administración de empleados</h1>
+					<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="./index.php">Inicio</a></li>
+		<li class="breadcrumb-item"><a href="./index.php?seccion=empleados.php">Administración de empleados</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Edicion de Datos de Empleado</li>
+    </ol>
+</nav>
+                    <h1 class="h3 mb-2 text-gray-800">Edicion de Datos de Empleado</h1>
                     <p class="mb-4"> </p>
 
                     <!-- DataTales Example -->

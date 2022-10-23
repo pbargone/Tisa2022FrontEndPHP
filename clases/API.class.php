@@ -64,7 +64,20 @@ class API {
 
 	 }
 
+	public function getProductosAll(){
+		 	try{			
+				$headers = [
+				  'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']
+				];			
+				$request = new Request('GET', API_URL.'/producto/all', $headers);
+				$res = $this->clienteApi->sendAsync($request)->wait();
+				$respuesta = json_decode($res->getBody(true)->getContents());			
+				return $respuesta->data;			
+			}catch (RequestException $e){			
+	            	$this->StatusCodeHandling("/producto/all",$e);         
+			}
 
+		 }
 	public function getEmpleadoById($id){
 		try{			
 		   $headers = [
@@ -93,8 +106,54 @@ class API {
 	   }catch (RequestException $e){			
 			   $this->StatusCodeHandling("/empleado/",$e);         
 	   }
+	}
+
+	public function getProductoById($id){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']
+		   ];			
+		   $request = new Request('GET', API_URL.'/producto/'.$id, $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->data;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/producto/id",$e);         
+	   }
 
 	}
+
+	public function crearProducto($jsonProducto){
+			try{			
+			   $headers = [
+				 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
+				 'Content-Type' => 'application/json'
+			   ];		   
+			   $request = new Request('POST', API_URL.'/producto', $headers, $jsonProducto);
+			   $res = $this->clienteApi->sendAsync($request)->wait();
+			   $respuesta = json_decode($res->getBody(true)->getContents());			
+			   return $respuesta->status_msg;			
+		   }catch (RequestException $e){			
+				   $this->StatusCodeHandling("/producto/",$e);         
+		   }
+		}
+
+	public function actualizarProducto($jsonProducto){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
+			 'Content-Type' => 'application/json'
+		   ];			
+		   $request = new Request('PUT', API_URL.'/producto', $headers, $jsonProducto);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->status_msg;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/producto/",$e);         
+	   }
+
+	}
+
 	public function actualizarEmpleado($jsonEmpleado){
 		try{			
 		   $headers = [
@@ -141,6 +200,82 @@ class API {
 	   }
 
 	}
+
+	public function getRubrosAll(){
+		 	try{			
+				$headers = [
+				  'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']
+				];			
+				$request = new Request('GET', API_URL.'/rubro/all', $headers);
+				$res = $this->clienteApi->sendAsync($request)->wait();
+				$respuesta = json_decode($res->getBody(true)->getContents());			
+				return $respuesta->data;			
+			}catch (RequestException $e){			
+	            	$this->StatusCodeHandling("/rubro/all",$e);         
+			}
+
+		 }
+
+	public function getRubroById($id){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']
+		   ];			
+		   $request = new Request('GET', API_URL.'/rubro/'.$id, $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->data;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/rubro/id",$e);         
+	   }
+
+	}
+
+	public function crearRubro($jsonRubro){
+			try{			
+			   $headers = [
+				 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
+				 'Content-Type' => 'application/json'
+			   ];		   
+			   $request = new Request('POST', API_URL.'/rubro', $headers, $jsonRubro);
+			   $res = $this->clienteApi->sendAsync($request)->wait();
+			   $respuesta = json_decode($res->getBody(true)->getContents());			
+			   return $respuesta->status_msg;			
+		   }catch (RequestException $e){			
+				   $this->StatusCodeHandling("/rubro/",$e);         
+		   }
+		}
+
+	public function actualizarRubro($jsonRubro){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
+			 'Content-Type' => 'application/json'
+		   ];			
+		   $request = new Request('PUT', API_URL.'/rubro', $headers, $jsonRubro);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->status_msg;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/rubro/",$e);         
+	   }
+
+	}
+		public function borrarrubro($id){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']			 
+		   ];			
+		   $request = new Request('DELETE', API_URL.'/rubro/'.$id, $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->status_msg;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/rubro/",$e);         
+	   }
+
+	}
+
 	////////////// FIN MISCELANEAS
 	 // arma las excepciones por errores de http status
 	 public function StatusCodeHandling($endPoint,$e){	 		

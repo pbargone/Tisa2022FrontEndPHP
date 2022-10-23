@@ -92,7 +92,7 @@ session_start();
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Bienvenido!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">¡Bienvenido!</h1>
                                     </div>
                                     <form  method=POST action=login.php>
                                         <div class="form-group">
@@ -108,7 +108,7 @@ session_start();
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Olvidó su clave?</a>
+                                        <a class="small" href="forgot-password.html">¿Olvidó su clave?</a>
                                     </div>                                    
                                 </div>
                             </div>
@@ -129,7 +129,7 @@ session_start();
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Error de login</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Error de inicio de sesión</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>

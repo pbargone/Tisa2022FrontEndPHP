@@ -89,7 +89,7 @@ try{
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
+                                    <!--<tfoot>
                                         <tr>
                                             <th>ID</th>
                                             <th>Nombre</th>
@@ -100,7 +100,7 @@ try{
                                             <th>Prov.</th>
                                             <th>Email</th>
                                             <th>Acciones</th>                           
-                                        </tr>
+                                        </tr> -->
                                     </tfoot>
                                     <tbody>
                                     <?php foreach($empleados as $empleado){ ?>

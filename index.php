@@ -9,6 +9,7 @@ if (isset($_GET['seccion'])){
 	include_once $_GET['seccion'];
 }else{
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,5 +80,6 @@ if (isset($_GET['seccion'])){
     </div>
 </div>
 </body></html>
+
 <?php } ?>
 <?php include_once FOOTER_FILE; ?>

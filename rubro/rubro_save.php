@@ -16,15 +16,15 @@ try{
 
             $oApi = new API();
             if (empty($_POST["id_rubro"])){
-                $oApi->crearRubro($jsonrubro); 
+                $oApi->crearrubro($jsonrubro); 
             }else{
                 $oApi->actualizarrubro($jsonrubro); 
             }   
         }else{
             if (isset($_GET["id_rubro"])){
                 $oApi = new API();
-               $oApi->borrarrubro($_GET["id_rubro"]); 
-                $Msg = "El rubro se eliminó correctamente";
+                $oApi->desactivarrubro($_GET["id_rubro"]); 
+                $Msg = "El rubro se dio de baja correctamente";
             }else{
                 $Msg = "Faltan datos para completar la operación";
             }
@@ -50,7 +50,7 @@ try{
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Error de carga de datos</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Mensaje</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>

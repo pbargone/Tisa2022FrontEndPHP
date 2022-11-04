@@ -12,7 +12,7 @@ if(isset($_GET["id"])){try{
             // si el id no es cero es editar de empleado
             $empleados = $oApi->getEmpleadoById($_GET["id"]);            
             $empleado = $empleados[0];
-            $titulo = "Edición de datos de empleado";
+            $titulo = "Edición de empleado";
         }else{
             // si el id es cero es alta
             $titulo = "Alta de empleado";
@@ -56,7 +56,7 @@ if(isset($_GET["id"])){try{
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Error de cargando datos</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Mensaje</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -81,10 +81,10 @@ if(isset($_GET["id"])){try{
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="./index.php">Inicio</a></li>
 		<li class="breadcrumb-item"><a href="./index.php?seccion=empleados.php">Administración de empleados</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Edicion de Datos de Empleado</li>
+        <li class="breadcrumb-item active" aria-current="page"><?php echo $titulo ?></li>
     </ol>
 </nav>
-                    <h1 class="h3 mb-2 text-gray-800">Edicion de Datos de Empleado</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Administración de empleados</h1>
                     <p class="mb-4"> </p>
 
                     <!-- DataTales Example -->

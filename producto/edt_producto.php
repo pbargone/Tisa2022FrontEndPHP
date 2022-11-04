@@ -12,7 +12,7 @@ if(isset($_GET["id"])){try{
             // si el id no es cero es editar de producto
             $productos = $oApi->getproductoById($_GET["id"]);            
             $producto = $productos[0];
-            $titulo = "Edición de datos de producto";
+            $titulo = "Edición de producto";
         }else{
             // si el id es cero es alta
             $titulo = "Alta de producto";
@@ -20,7 +20,8 @@ if(isset($_GET["id"])){try{
                             "id_producto": 0,
                             "codigo_producto": "",
                             "producto": "",
-                            "detalle": ""                          
+                            "detalle": "",
+                            "id_rubro": ""                          
                         }';
 
 
@@ -54,7 +55,7 @@ if(isset($_GET["id"])){try{
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Error de cargado de datos</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Mensaje</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -75,6 +76,14 @@ if(isset($_GET["id"])){try{
        <div class="container-fluid">
 
                     <!-- Page Heading -->
+                    <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="./index.php">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="./index.php?seccion=productos.php">Administracion de productos</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><?php echo $titulo ?></li>
+    </ol>
+</nav>
+                    
                     <h1 class="h3 mb-2 text-gray-800">Administración de productos</h1>
                     <p class="mb-4"> </p>
 
@@ -90,15 +99,17 @@ if(isset($_GET["id"])){try{
                                   <div class="row mb-4">
                                     <div class="col">
                                       <div class="form-outline">
-                                        <input type="text" name="id_producto_sh" id="id_producto_sh" disabled="" class="form-control"  value="<?php echo $producto->id_producto;?>" />
+                                        <input type="text" name="id_producto" id="id_producto" disabled="" class="form-control"  value="<?php echo $producto->id_producto;?>" />
                                         <input type="hidden" name="id_producto" id="id_producto" class="form-control"  value="<?php echo $producto->id_producto;?>" />
-                                        <label class="form-label" for="id">ID</label>
+                                        <label class="form-label" for="id_producto">ID</label>
                                       </div>
                                     </div>
                                     <div class="col">
                                       <div class="form-outline">
-                                        <input type="text" name="codigo" id="codigo" class="form-control" value="<?php echo $producto->codigo_producto;?>" />
-                                        <label class="form-label" for="codigo">Codigo</label>
+                                        <input type="text" name="codigo_producto" id="codigo_producto" class="form-control" <?php if(!empty($_GET["id"])) echo 'disabled="" ';?>
+
+                                            value="<?php echo $producto->codigo_producto;?>" />
+                                        <label class="form-label" for="codigo_producto">Codigo</label>
                                       </div>
                                     </div>
                                     <div class="col">
@@ -118,9 +129,9 @@ if(isset($_GET["id"])){try{
                                     </div>
                                     <div class="col">
                                           <div class="form-outline">
-                                          <select class="form-control" name="state" id="id_rubro">
+                                          <select class="form-control" name="id_rubro" id="id_rubro">
                                             <?php foreach($rubros as $rubro){ ?>
-                                                <option value="<?php echo $rubro->rubro;?>">
+                                                <option value="<?php echo $rubro->id_rubro;?>">
                                                     <?php echo $rubro->rubro;?></option>
                                                 <?php } ?>
                                             </select>

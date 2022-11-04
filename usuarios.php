@@ -169,3 +169,11 @@ try{
 
 <?php } 
 include_once FOOTER_FILE;?>
+
+<script>
+    $('#dataTable').DataTable({
+        "language": {
+            "url": "lenguaje.json"
+        }
+    });
+</script>

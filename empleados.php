@@ -138,7 +138,7 @@ try{
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Esta seguro de eliminar el Empleado?</h4>
+                                            <h4 class="modal-title">¿Esta seguro que quiere eliminar al empleado?</h4>
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
                                         <div class="modal-body">
@@ -146,7 +146,7 @@ try{
                                                 
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-light btn-lg" data-dismiss="modal">Cerrar</button>
-                                                    <button type="submit" class="btn btn-outline-danger btn-lg"><i class="fas fa-trash-alt mr-2"></i>Elimimar</button>
+                                                    <button type="submit" class="btn btn-outline-danger btn-lg"><i class="fas fa-trash-alt mr-2"></i>Eliminar</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -166,10 +166,6 @@ try{
                 </div>
                 <!-- /.container-fluid -->
 				
-				
-
-				
-				
-				
+								
 				
 <?php }?> 

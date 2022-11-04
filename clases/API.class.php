@@ -123,13 +123,13 @@ class API {
 
 	}
 
-	public function crearProducto($jsonProducto){
+	public function crearProducto($jsonproducto){
 			try{			
 			   $headers = [
 				 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
 				 'Content-Type' => 'application/json'
 			   ];		   
-			   $request = new Request('POST', API_URL.'/producto', $headers, $jsonProducto);
+			   $request = new Request('POST', API_URL.'/producto', $headers, $jsonproducto);
 			   $res = $this->clienteApi->sendAsync($request)->wait();
 			   $respuesta = json_decode($res->getBody(true)->getContents());			
 			   return $respuesta->status_msg;			
@@ -138,13 +138,13 @@ class API {
 		   }
 		}
 
-	public function actualizarProducto($jsonProducto){
+	public function actualizarProducto($id_producto){
 		try{			
 		   $headers = [
 			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
 			 'Content-Type' => 'application/json'
 		   ];			
-		   $request = new Request('PUT', API_URL.'/producto', $headers, $jsonProducto);
+		   $request = new Request('PUT', API_URL.'/producto', $headers, $id_producto);
 		   $res = $this->clienteApi->sendAsync($request)->wait();
 		   $respuesta = json_decode($res->getBody(true)->getContents());			
 		   return $respuesta->status_msg;			
@@ -153,6 +153,22 @@ class API {
 	   }
 
 	}
+
+	public function desactivarproducto($id_producto){
+        try{            
+           $headers = [
+             'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
+             'Content-Type' => 'application/json'
+           ];    
+           $request = new Request('PUT', API_URL.'/producto/desactivar/'.$id_producto, $headers);
+           $res = $this->clienteApi->sendAsync($request)->wait();
+           $respuesta = json_decode($res->getBody(true)->getContents());            
+           return $respuesta->status_msg;           
+       }catch (RequestException $e){            
+               $this->StatusCodeHandling("/producto/",$e);         
+       }
+
+    }
 
 	public function actualizarEmpleado($jsonEmpleado){
 		try{			
@@ -231,13 +247,13 @@ class API {
 
 	}
 
-	public function crearRubro($jsonRubro){
+	public function crearrubro($jsonrubro){
 			try{			
 			   $headers = [
 				 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
 				 'Content-Type' => 'application/json'
 			   ];		   
-			   $request = new Request('POST', API_URL.'/rubro', $headers, $jsonRubro);
+			   $request = new Request('POST', API_URL.'/rubro', $headers, $jsonrubro);
 			   $res = $this->clienteApi->sendAsync($request)->wait();
 			   $respuesta = json_decode($res->getBody(true)->getContents());			
 			   return $respuesta->status_msg;			
@@ -246,13 +262,13 @@ class API {
 		   }
 		}
 
-	public function actualizarRubro($jsonRubro){
+	public function actualizarrubro($jsonrubro){
 		try{			
 		   $headers = [
 			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
 			 'Content-Type' => 'application/json'
 		   ];			
-		   $request = new Request('PUT', API_URL.'/rubro', $headers, $jsonRubro);
+		   $request = new Request('PUT', API_URL.'/rubro', $headers, $jsonrubro);
 		   $res = $this->clienteApi->sendAsync($request)->wait();
 		   $respuesta = json_decode($res->getBody(true)->getContents());			
 		   return $respuesta->status_msg;			
@@ -261,20 +277,21 @@ class API {
 	   }
 
 	}
-		public function borrarrubro($id){
-		try{			
-		   $headers = [
-			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']			 
-		   ];			
-		   $request = new Request('DELETE', API_URL.'/rubro/'.$id, $headers);
-		   $res = $this->clienteApi->sendAsync($request)->wait();
-		   $respuesta = json_decode($res->getBody(true)->getContents());			
-		   return $respuesta->status_msg;			
-	   }catch (RequestException $e){			
-			   $this->StatusCodeHandling("/rubro/",$e);         
-	   }
+		public function desactivarrubro($id_rubro){
+        try{            
+           $headers = [
+             'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
+             'Content-Type' => 'application/json'
+           ];    
+           $request = new Request('PUT', API_URL.'/rubro/desactivar/'.$id_rubro, $headers);
+           $res = $this->clienteApi->sendAsync($request)->wait();
+           $respuesta = json_decode($res->getBody(true)->getContents());            
+           return $respuesta->status_msg;           
+       }catch (RequestException $e){            
+               $this->StatusCodeHandling("/rubro/",$e);         
+       }
 
-	}
+    }
 
 	////////////// FIN MISCELANEAS
 	 // arma las excepciones por errores de http status

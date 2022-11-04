@@ -13,8 +13,9 @@ try{
                                 "codigo_producto": "'.$_POST["codigo_producto"].'",
                                 "producto": "'.$_POST["producto"].'",
                                 "detalle": "'.$_POST["detalle"].'",
+                                "id_rubro": "'.$_POST["id_rubro"].'"
 
-                            }';
+                            }'; #var_dump($jsonproducto);
 
             $oApi = new API();
             if (empty($_POST["id_producto"])){
@@ -24,9 +25,10 @@ try{
             }   
         }else{
             if (isset($_GET["id_producto"])){
+                
                 $oApi = new API();
-                $oApi->borrarproducto($_GET["id_producto"]); 
-                $Msg = "El producto se eliminó correctamente";
+                $oApi->desactivarproducto($_GET["id_producto"]); 
+                $Msg = "El producto se dio de baja correctamente";
             }else{
                 $Msg = "Faltan datos para completar la operación";
             }
@@ -52,7 +54,7 @@ try{
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Error de carga de datos</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Mensaje</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>

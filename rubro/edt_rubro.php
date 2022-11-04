@@ -12,7 +12,7 @@ if(isset($_GET["id"])){try{
             // si el id no es cero es editar de rubro
             $rubros = $oApi->getRubroById($_GET["id"]);            
             $rubro = $rubros[0];
-            $titulo = "Edición de datos de rubro";
+            $titulo = "Edición de rubro";
         }else{
             // si el id es cero es alta
             $titulo = "Alta de rubro";
@@ -53,7 +53,7 @@ if(isset($_GET["id"])){try{
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Error de cargado de datos</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Mensaje</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -74,6 +74,14 @@ if(isset($_GET["id"])){try{
        <div class="container-fluid">
 
                     <!-- Page Heading -->
+
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="./index.php">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="./index.php?seccion=rubros.php">Administracion de rubros</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><?php echo $titulo ?></li>
+                        </ol>
+                    </nav>
                     <h1 class="h3 mb-2 text-gray-800">Administración de rubros</h1>
                     <p class="mb-4"> </p>
 
@@ -89,9 +97,9 @@ if(isset($_GET["id"])){try{
                                   <div class="row mb-4">
                                     <div class="col">
                                       <div class="form-outline">
-                                        <input type="text" name="id_rubro_sh" id="id_rubro_sh" disabled="" class="form-control"  value="<?php echo $rubro->id_rubro;?>" />
+                                        <input type="text" name="id_rubro" id="id_rubro" disabled="" class="form-control"  value="<?php echo $rubro->id_rubro;?>" />
                                         <input type="hidden" name="id_rubro" id="id_rubro" class="form-control"  value="<?php echo $rubro->id_rubro;?>" />
-                                        <label class="form-label" for="id">ID</label>
+                                        <label class="form-label" for="id_rubro">ID</label>
                                       </div>
                                     </div>
                                     <div class="col">
@@ -102,8 +110,8 @@ if(isset($_GET["id"])){try{
                                     </div>
                                     <div class="col">
                                       <div class="form-outline">
-                                        <input type="text" name="Sigla" id="Sigla" class="form-control" value="<?php echo $rubro->sigla_rubro;?>"/>
-                                        <label class="form-label" for="Sigla">Sigla</label>
+                                        <input type="text" name="sigla_rubro" id="sigla_rubro" class="form-control" value="<?php echo $rubro->sigla_rubro;?>"/>
+                                        <label class="form-label" for="sigla_rubro">Sigla</label>
                                       </div>
                                     </div>
                                   </div>

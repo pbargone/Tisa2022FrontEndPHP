@@ -9,6 +9,7 @@ if (isset($_GET['seccion'])){
 	include_once $_GET['seccion'];
 }else{
 ?>
-<h1>Index</h1>
+<h1>Laboratorio forbenthon</h1>
+
 <?php } ?>
 <?php include_once FOOTER_FILE; ?>

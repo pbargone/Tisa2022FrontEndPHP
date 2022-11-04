@@ -41,6 +41,7 @@
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
+
 *,
 *::before,
 *::after {
@@ -159,7 +160,7 @@ sup {
 }
 
 a {
-  color: #4e73df;
+  color: #92df4e;
   text-decoration: none;
   background-color: transparent;
 }
@@ -4493,6 +4494,7 @@ input[type="button"].btn-block {
   flex: 1 1 auto;
   min-height: 1px;
   padding: 1.25rem;
+  
 }
 
 .card-title {
@@ -11247,3 +11249,5 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+
+

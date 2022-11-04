@@ -368,6 +368,37 @@ class API {
 	   }catch (RequestException $e){			
 			   $this->StatusCodeHandling("/proveedor/",$e);         
 	   }
+	}
+
+	public function desactivarProveedor($proveedor){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
+			 'Content-Type' => 'application/json'
+		   ];		
+		   $request = new Request('PUT', API_URL.'/proveedor/desactivar/'.$proveedor, $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->status_msg;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/proveedor/",$e);         
+	   }
+
+	}
+
+	public function activarProveedor($proveedor){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
+			 'Content-Type' => 'application/json'
+		   ];		
+		   $request = new Request('PUT', API_URL.'/proveedor/activar/'.$proveedor, $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->status_msg;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/proveedor/",$e);         
+	   }
 
 	}
 

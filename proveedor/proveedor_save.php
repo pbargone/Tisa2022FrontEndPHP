@@ -36,8 +36,14 @@ try{
         }else{
             if (isset($_GET["id_proveedor"])){
                 $oApi = new API();
-                $oApi->borrarProveedor($_GET["id_proveedor"]); 
-                $Msg = "El Proveedor se eliminó correctamente";
+                if($_GET["activo"]==1){
+                $oApi->desactivarProveedor($_GET["id_proveedor"]);
+                $Msg = "El Proveedor se desactivó correctamente";}
+                else{
+                $oApi->activarProveedor($_GET["id_proveedor"]);
+                $Msg = "El Proveedor se activó correctamente";  
+                }
+                
             }else{
                 $Msg = "Faltan datos para completar la operación";
             }

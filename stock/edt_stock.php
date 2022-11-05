@@ -277,8 +277,19 @@ if(isset($_GET["id_stock"])){try{
                             
                         </div>
                             <script>
-                                const agregarFila = () => {
-                                document.getElementById('insertStock').insertRow(-1).innerHTML = '<td><?php echo $Jid_comprobante; ?></td>'+'<td><?php echo date("Y-m-d")." ".date("h:i:s"); ?></td>'
+                                const agregarFila = () => {                               
+
+                                document.getElementById('insertStock').insertRow(-1).innerHTML = "<td>Comprobante</td>"+
+                                        "<td>Fecha</td>"+
+                                        "<td>Nro. Comprobante</td>"+
+                                        "<td>Proveedor</td>"+
+                                        "<td>Producto</td>"+
+                                        "<td>"+document.getElementById("nro_lote").value+"</td>"+
+                                        "<td>Vencimiento</td>"+
+                                        "<td>Bultos</td>"+
+                                        "<td>País</td>"+
+                                        "<td>Presentación</td>"+
+                                        "<td>Acciones</td>";
                                 }
 
                                 const eliminarFila = () => {

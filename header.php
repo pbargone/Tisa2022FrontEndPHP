@@ -20,6 +20,7 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -67,6 +68,56 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         
                         <a class="collapse-item" href="index.php?seccion=empleados.php">Administrar empleados</a>
+                        
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Comprobante Collapse Menu -->
+        <!--    <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseComprobante"
+                    aria-expanded="true" aria-controls="collapseComprobante">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Comprobantes</span>
+                </a>
+                <div id="collapseComprobante" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        
+                        <a class="collapse-item" href="index.php?seccion=comprobantes.php">Comprobantes</a>
+                        
+                    </div>
+                </div>
+            </li>   -->
+
+            <!-- Nav Item - Stock Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStock"
+                    aria-expanded="true" aria-controls="collapseStock">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Stock</span>
+                </a>
+                <div id="collapseStock" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        
+                        <a class="collapse-item" href="index.php?seccion=stock/edt_stock.php&id_comprobante=0&id_stock=0">Ingreso de Stock</a>
+                        
+                    </div>
+                </div>
+                <div id="collapseStock" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        
+                        <a class="collapse-item" href="index.php?seccion=stock.php">Salida de Stock</a>
+                        
+                    </div>
+                </div>
+                <div id="collapseStock" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        
+                        <a class="collapse-item" href="index.php?seccion=ControlCalidad.php">Control de Calidad</a>
                         
                     </div>
                 </div>

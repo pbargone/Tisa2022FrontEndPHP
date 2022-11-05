@@ -49,7 +49,7 @@ class API {
 	 }
 	 ////////////// FIN USUARIOS
 	 ////////////// EMPLEADOS
-	 public function getEmpleadosAll(){
+	public function getEmpleadosAll(){
 	 	try{			
 			$headers = [
 			  'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']
@@ -62,7 +62,7 @@ class API {
             	$this->StatusCodeHandling("/empleado/all",$e);         
 		}
 
-	 }
+	}
 
 
 	public function getEmpleadoById($id){
@@ -141,6 +141,22 @@ class API {
 	   }
 
 	}
+
+	public function getPaisAll(){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']
+		   ];			
+		   $request = new Request('GET', API_URL.'/misc/pais/all', $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->data;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/stock/id",$e);         
+	   }
+
+	}
+
 	////////////// FIN MISCELANEAS
 	 // arma las excepciones por errores de http status
 	 public function StatusCodeHandling($endPoint,$e){	 		
@@ -157,6 +173,244 @@ class API {
 				
 			}
 	 }
+	/// COMPROBANTE
 
+	public function getComprobanteAll(){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']
+		   ];			
+		   $request = new Request('GET', API_URL.'/comprobante/all', $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->data;			
+	   }catch (RequestException $e){			
+			$this->StatusCodeHandling("/comprobante/all",$e);         
+	    }
+    }
+
+	public function getComprobanteByID($id){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']
+		   ];			
+		   $request = new Request('GET', API_URL.'/comprobante/'.$id, $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->data;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/comprobante/id",$e);         
+	   }
+
+	}
+
+	public function crearComprobante($jsonComprobante){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
+			 'Content-Type' => 'application/json'
+		   ];		   
+		   $request = new Request('POST', API_URL.'/comprobante', $headers, $jsonComprobante);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->status_msg;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/comprobante/",$e);         
+	   }
+	}
+
+	public function actualizarComprobante($jsonComprobante){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
+			 'Content-Type' => 'application/json'
+		   ];			
+		   $request = new Request('PUT', API_URL.'/comprobante', $headers, $jsonComprobante);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->status_msg;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/comprobante/",$e);         
+	   }
+
+	}
+
+	public function borrarComprobante($id){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']			 
+		   ];			
+		   $request = new Request('DELETE', API_URL.'/comprobante/'.$id, $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->status_msg;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/comprobante/",$e);         
+	   }
+
+	}
+	
+	
+	/// FIN COMPROBANTE
+
+	//// COMPROBANTE TIPO
+
+	public function getComprobanteTipo(){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']
+		   ];			
+		   $request = new Request('GET', API_URL.'/comprobantetipo/all', $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->data;			
+	   	}catch (RequestException $e){			
+			$this->StatusCodeHandling("/comprobante/id",$e);         
+	    }
+    }
+
+	public function getComprobanteTipoByStock(){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']
+		   ];			
+		   $request = new Request('GET', API_URL.'/comprobantetipo/all', $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->data;			
+	   	}catch (RequestException $e){			
+			$this->StatusCodeHandling("/comprobante/stock",$e);         
+	    }
+    }
+
+	//// PROVEEDOR
+
+	public function getProveedorID(){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']
+		   ];			
+		   $request = new Request('GET', API_URL.'/proveedor/all', $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->data;			
+	   	}catch (RequestException $e){			
+			$this->StatusCodeHandling("/proveedor/id",$e);         
+	    }
+    }
+
+	//// PRODUCTO
+
+	public function getProductoAll(){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']
+		   ];			
+		   $request = new Request('GET', API_URL.'/producto/all', $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->data;			
+	   	}catch (RequestException $e){			
+			$this->StatusCodeHandling("/producto/id",$e);         
+	    }
+    }
+
+	//// STOCK
+
+	public function getStockAll(){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']
+		   ];			
+		   $request = new Request('GET', API_URL.'/stock/all', $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->data;			
+	   	}catch (RequestException $e){			
+			$this->StatusCodeHandling("/stock/id",$e);         
+	    }
+    }
+
+	public function getStockByID($id){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']
+		   ];			
+		   $request = new Request('GET', API_URL.'/stock/'.$id, $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->data;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/stock/id",$e);         
+	   }
+
+	}
+
+	public function crearStock($jsonStock){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
+			 'Content-Type' => 'application/json'
+		   ];		   
+		   $request = new Request('POST', API_URL.'/stock', $headers, $jsonStock);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->status_msg;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/stock/",$e);         
+	   }
+
+	}
+
+	public function actualizarStock($jsonStock){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
+			 'Content-Type' => 'application/json'
+		   ];			
+		   $request = new Request('PUT', API_URL.'/stock', $headers, $jsonStock);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->status_msg;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/stock/",$e);         
+	   }
+
+	}
+
+	//// STOCK MOVIMIENTO
+
+	public function getStockMovimientoAll(){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']
+		   ];			
+		   $request = new Request('GET', API_URL.'/stockMovimiento/all', $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->data;			
+	   	}catch (RequestException $e){			
+			$this->StatusCodeHandling("/stockMovimiento/id",$e);         
+	    }
+    }
+
+	//// RUBRO
+
+	public function getRubro(){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']
+		   ];			
+		   $request = new Request('GET', API_URL.'/rubro/all', $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->data;			
+	   	}catch (RequestException $e){			
+			$this->StatusCodeHandling("/rubro/all",$e);         
+	    }
+    }
+
+	
+	
 }
 ?>

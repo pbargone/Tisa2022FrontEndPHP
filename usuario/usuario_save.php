@@ -2,36 +2,29 @@
 
 require_once("accesscontrol.php");
 
+
 $Msg = "Datos guardados correctamente";
 try{
         
         // valido lo recibido del form
-        if (isset($_POST["id_empleado"])){
-            if(empty($_POST["cod_provincia"])){
-                $_POST["cod_provincia"] = null;
-            }
-            $jsonEmpleado = '{
-                                "id_empleado": '.$_POST["id_empleado"].',
-                                "nombre": "'.$_POST["nombre"].'",
-                                "apellido": "'.$_POST["apellido"].'",
-                                "calle": "'.$_POST["calle"].'",
-                                "numero_calle": "'.$_POST["numero_calle"].'",
-                                "localidad": "'.$_POST["localidad"].'",
-                                "cod_provincia": "'.$_POST["cod_provincia"].'",
+        if (isset($_POST["id_usuario"])){
+            $jsonUsuario = '{
+                                "id_usuario: '.$_POST["id_usuario"].',
+                                "usuario": "'.$_POST["usuario"].'",
                                 "email": "'.$_POST["email"].'"
                             }';
 
             $oApi = new API();
-            if (empty($_POST["id_empleado"])){
-                $oApi->crearEmpleado($jsonEmpleado); 
+            if (empty($_POST["id_usuario"])){
+                $oApi->crearUsuario($jsonUsuario); 
             }else{
-                $oApi->actualizarEmpleado($jsonEmpleado); 
+                $oApi->actualizarUsuario($jsonUsuario); 
             }   
         }else{
-            if (isset($_GET["id_empleado"])){
+            if (isset($_GET["id_usuario"])){
                 $oApi = new API();
-                $oApi->borrarEmpleado($_GET["id_empleado"]); 
-                $Msg = "El empleado se eliminó correctamente";
+                $oApi->borrarUsuario($_GET["id_usuario"]); 
+                $Msg = "El usuario se eliminó correctamente";
             }else{
                 $Msg = "Faltan datos para completar la operación";
             }
@@ -64,7 +57,7 @@ try{
                 </div>
                 <div class="modal-body"><?php if (!empty($Msg)){echo $Msg;} ?></div>
                 <div class="modal-footer">
-                    <a href="index.php?seccion=empleados.php">
+                    <a href="index.php?seccion=usuarios.php">
                     <button class="btn btn-primary" type="button" >OK</button> 
                     </a>                   
                 </div>
@@ -72,6 +65,3 @@ try{
         </div>
     </div>
     <!-- fin error Modal-->
-
-
-

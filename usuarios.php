@@ -4,12 +4,17 @@ require_once("accesscontrol.php");
 $ErrorMsg = "";
 try{
         $oApi = new API();
-        $usuarios = $oApi->getUsuariosAll();            
+        $usuarios = $oApi->getUsuariosAll();     
     }catch (Exception $e){
         $ErrorMsg =  $e->getMessage();
     }
 
+
+
 ?>
+
+
+
 
 <?php if (!empty($ErrorMsg )) { ?>
     <!-- error Modal-->
@@ -51,9 +56,7 @@ try{
 		<li class="breadcrumb-item active" aria-current="page">Administración de usuarios</li>
     </ol>
 </nav>
-					
-					
-					
+			
                     <h1 class="h3 mb-2 text-gray-800">Administración de usuarios</h1>
                     <p class="mb-4">   </p>
 
@@ -79,34 +82,24 @@ try{
                                             <th>ID</th>
                                             <th>Usuario</th>
                                             <th>Email</th>
-                                            <th>Activo</th>
-
-                                            <th>Permiso</th>
-
-                                            <th>Acciones</th>                                            
+                                            <th>activo</th>
+                                            <th>Perfil</th>  
+                                            <th>Acciones</th>      
+                                                                                   
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Usuario</th>
-                                            <th>Email</th>
-                                            <th>Activo</th>
-
-                                            <th>Permiso</th>
-
-                                            <th>Acciones</th>                            
-                                        </tr>
-                                    </tfoot>
+                                    
                                     <tbody>
                                     <?php foreach($usuarios as $usuario){ ?>
                                         <tr>
+                                          
+                                                   
                                             <td><?php echo $usuario->id_usuario;?></td>
                                             <td><?php echo $usuario->usuario;?></td>
                                             <td><?php echo $usuario->email;?></td>
-                                            <td><?php echo $usuario->activo;?></td>
-                                            <td><?php echo $usuario->perfil;?></td> 
-
+                                            <td><?php if($usuario->activo == '1') {echo "Si";}else{echo "No";} ?></td>
+                                            <td><?php echo $usuario->perfil;?></td>
+                                            
                                             <td>
 											
 											<div class=btn-group>
@@ -119,45 +112,35 @@ try{
 												
 												
 												<a class="btn btn-outline-danger" href="" data-toggle="modal" data-toggle="tooltip"
-												data-placement="bottom" title=" Borrar " data-target="#ModalEditar<?php echo $usuario->id_usuario;?>">
+												data-placement="bottom" title=" Borrar " data-target="#ModalEditar<?php echo $usuario->usuario;?>">
                                                 <i class="fas fa-trash-alt"> </i>
 												</a>
 																						                                             
 												
-												</div>											
-											
-											
-											
-											
-
+												</div>																				
                                         </tr>  
-									
+                                  
+                                    
 									<!-- Modal Borrar -->
-                            <div class="modal fade" id="ModalEditar<?php echo $usuario->id_usuario; ?>" tabindex="-1" role="dialog">
+                            <div class="modal fade" id="ModalEditar<?php echo $usuario->usuario;?>" tabindex="-1" role="dialog">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Esta seguro de eliminar el Usuario?</h4>
+                                            <h4 class="modal-title">Esta seguro de dar la baja al usuario: <b><?php echo $usuario->usuario;?></b> ?</h4>
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
                                         <div class="modal-body">
-                                            <form method="POST" action="index.php?seccion=usuario/usuario_save.php&id_usuario=<?php echo $usuario->id_usuario;?>" autocomplete="off" enctype="multipart/form-data">
-                                                
+                                            <form method="POST" action="index.php?seccion=usuario/usuario_save.php&usuario=<?php echo $usuario->usuario;?>" autocomplete="off" enctype="multipart/form-data">
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-light btn-lg" data-dismiss="modal">Cerrar</button>
-                                                    <button type="submit" class="btn btn-outline-danger btn-lg"><i class="fas fa-trash-alt mr-2"></i>Elimimar</button>
+                                                    <button type="submit" class="btn btn-outline-danger btn-lg"><i class="fas fa-trash-alt mr-2"></i>Dar de baja</button>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-									
-									
-									
-									
-									
-                                    <?php }?>                                      
+                            </div>								
+                            <?php }?>                                  
                                     </tbody>
                                 </table>
                             </div>

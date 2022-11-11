@@ -33,6 +33,21 @@ class API {
 
 	 }
 
+	 public function getUsuarioById($id){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN']
+		   ];			
+		   $request = new Request('GET', API_URL.'/usuario/'.$id, $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->data;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/usuario/id",$e);         
+	   }
+
+	}
+
 	public function getUsuariosAll(){
 	 	try{			
 			$headers = [
@@ -47,6 +62,58 @@ class API {
 		}
 
 	 }
+
+	 
+
+	 public function crearUsuario($jsonUsuario){
+		try{            
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
+			 'Content-Type' => 'application/json'
+		   ];          
+		   $request = new Request('POST', API_URL.'/usuario', $headers, $jsonUsuario);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());            
+		   return $respuesta->status_msg;           
+	   }catch (RequestException $e){            
+			   $this->StatusCodeHandling("/usuario/",$e);         
+	   }
+	
+	}
+	public function actualizarUsuario($jsonUsuario){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
+			 'Content-Type' => 'application/json'
+		   ];			
+		   $request = new Request('PUT', API_URL.'/usuario', $headers, $jsonUsuario);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->status_msg;			
+	   }catch (RequestException $e){			
+			   $this->StatusCodeHandling("/usuario/",$e);         
+	   }
+
+	}
+
+	public function desactivarUsuario($usuario){
+		try{			
+		   $headers = [
+			 'Authorization' => 'Bearer '.$_SESSION['TISA_TOKEN'],
+			 'Content-Type' => 'application/json'
+		   ];	
+		   //$request = new Request('PUT', API_URL.'/usuario/', $headers, $jsonUsuario); asi no encuentra la ruta		
+		   $request = new Request('PUT', API_URL.'/usuario/desactivar/'.$usuario, $headers);
+		   $res = $this->clienteApi->sendAsync($request)->wait();
+		   $respuesta = json_decode($res->getBody(true)->getContents());			
+		   return $respuesta->status_msg;			
+	   }catch (RequestException $e){			
+		//$this->StatusCodeHandling("/usuario/",$e); asi se rompe 
+			   $this->StatusCodeHandling("/usuario/",$e);         
+	   }
+
+	}
+	
 	 ////////////// FIN USUARIOS
 	 ////////////// EMPLEADOS
 	 public function getEmpleadosAll(){

@@ -31,7 +31,7 @@ try{
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Error de carga de datos</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Mensaje</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -72,7 +72,7 @@ try{
                             <h6 class="m-0 font-weight-bold text-primary">Proveedores del sistema
 							
 							<a class="btn btn-outline-primary" href="index.php?seccion=proveedor/edt_proveedor.php&id=0"
-                            data-toggle="tooltip" data-placement="bottom" title=" Nuevo ">
+                            data-toggle="tooltip" data-placement="bottom" title=" Registrar nuevo proveedor ">
                             <i class="fas fa-user-plus"> </i>
 								</a>					
 							</h6> 
@@ -82,8 +82,12 @@ try{
                     
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
 
+                            <link rel="stylesheet" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"/>
+                                <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+                                <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+                                
                                 <thead>
                                         <tr>
                                         <th>id_proveedor</th>
@@ -122,7 +126,7 @@ try{
 												
 												
 												<a class="btn btn-outline-success" href="index.php?seccion=proveedor/edt_proveedor.php&id=<?php echo $proveedor->id_proveedor;?>"
-                                                data-toggle="tooltip" data-placement="bottom" title=" Editar ">
+                                                data-toggle="tooltip" data-placement="bottom" title=" Editar proveedor">
                                                 <i class="fas fa-pencil-alt"> </i>
 												</a>
 												
@@ -143,8 +147,8 @@ try{
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                        <?php if($proveedor->activo == '1') {?> <h4 class="modal-title">Esta seguro de dar la baja al Proveedor <b>--><?php echo $proveedor->razon_soc;?></b> ?</h4><?php }?>
-                                        <?php if($proveedor->activo == '0') {?> <h4 class="modal-title">Esta seguro de dar el alta al Proveedor <b>--><?php echo $proveedor->razon_soc;?></b> ?</h4><?php }?>
+                                        <?php if($proveedor->activo == '1') {?> <h4 class="modal-title">¿Esta seguro de querer dar de baja al proveedor <b><?php echo $proveedor->razon_soc;?></b> ?</h4><?php }?>
+                                        <?php if($proveedor->activo == '0') {?> <h4 class="modal-title">¿Esta seguro de querer dar de alta al proveedor <b><?php echo $proveedor->razon_soc;?></b> ?</h4><?php }?>
                                             <!--<h4 class="modal-title">Esta seguro de dar la baja al Proveedor <b>--><?php //echo $proveedor->razon_soc;?><!--</b> ?</h4>-->
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
@@ -154,6 +158,7 @@ try{
                                                     <button type="button" class="btn btn-light btn-lg" data-dismiss="modal">Cerrar</button>
 
                                                     <?php if($proveedor->activo == '1') {?><button type="submit" class="btn btn-outline-danger btn-lg"><i class="fas fa-user-slash"></i> Dar de Baja</button><?php }?>
+
                                                     <?php if($proveedor->activo == '0') {?><button type="submit" class="btn btn-outline-success btn-lg"><i class="fas fa-user-check"></i> Dar de Alta</button><?php }?>
                                                 </div>
                                             </form>
@@ -173,10 +178,12 @@ try{
 
 <?php } 
 include_once FOOTER_FILE;?>
-<script>
-    $('#dataTable').DataTable({
-        "language": {
-            "url": "lenguaje.json"
-        }
-    });
-</script>
+
+<script>$(document).ready(function() {
+  $('#dataTable2').DataTable({
+    "language": {
+      "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+    }
+  });
+
+});</script>

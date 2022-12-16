@@ -12,7 +12,7 @@ if(isset($_GET["id"])){try{
             // si el id no es cero es editar de empleado
             $proveedores = $oApi->getProveedorById($_GET["id"]);            
             $proveedor = $proveedores[0];
-            $titulo = "Edición de datos del Proveedor";
+            $titulo = "Edición de datos de proveedor";
         }else{
             // si el id es cero es alta
             $titulo = "Alta de proveedor";
@@ -58,7 +58,7 @@ if(isset($_GET["id"])){try{
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Error de cargando datos</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Error de carga de datos</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -88,7 +88,7 @@ if(isset($_GET["id"])){try{
        <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Administración de Proveedores</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Administración de proveedores</h1>
                     <p class="mb-4"> </p>
 
                     <!-- DataTales Example -->
@@ -154,7 +154,7 @@ if(isset($_GET["id"])){try{
                                                 }?>><?php echo $provincia->provincia;?></option>
                                             <?php } ?>
                                         </select>
-                                        <label  class="form-label" for="provincia"></label>
+                                        <label  class="form-label" for="provincia">Provincia</label>
                                       </div>
                                   </div>
                                   

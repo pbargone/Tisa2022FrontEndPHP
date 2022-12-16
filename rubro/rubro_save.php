@@ -17,14 +17,21 @@ try{
             $oApi = new API();
             if (empty($_POST["id_rubro"])){
                 $oApi->crearrubro($jsonrubro); 
+                $Msg = "Rubro creado correctamente";
             }else{
                 $oApi->actualizarrubro($jsonrubro); 
+                $Msg = "Rubro actualizado correctamente";
             }   
         }else{
             if (isset($_GET["id_rubro"])){
                 $oApi = new API();
-                $oApi->desactivarrubro($_GET["id_rubro"]); 
-                $Msg = "El rubro se dio de baja correctamente";
+                if($_GET["activo"]==1){
+                    $oApi->desactivarrubro($_GET["id_rubro"]);
+                    $Msg = "El rubro se desactivó correctamente";
+                }else{
+                    $oApi->activarrubro($_GET["id_rubro"]);
+                    $Msg = "El rubro se activó correctamente";  
+                }
             }else{
                 $Msg = "Faltan datos para completar la operación";
             }

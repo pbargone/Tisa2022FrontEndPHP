@@ -63,7 +63,7 @@ try{
                             <h6 class="m-0 font-weight-bold text-primary">Usuarios del sistema
 							
 							<a class="btn btn-outline-primary" href="index.php?seccion=usuario/edt_usuario.php&id=0"
-                            data-toggle="tooltip" data-placement="bottom" title=" Nuevo ">
+                            data-toggle="tooltip" data-placement="bottom" title=" Registrar nuevo usuario">
                             <i class="fas fa-user-plus"> </i>
 								</a>					
 							</h6> 
@@ -72,7 +72,12 @@ try{
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                                <link rel="stylesheet" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"/>
+                                <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+                                <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+                                
+                                <table class="table table-bordered" id="dataTable4" width="100%" cellspacing="0">
 
                                     <thead>
                                         <tr>
@@ -137,7 +142,7 @@ try{
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Esta seguro de eliminar el Usuario?</h4>
+                                            <h4 class="modal-title">¿Esta seguro de querer eliminar al usuario <b><?php echo $usuario->usuario;?></b>?</h4>
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
                                         <div class="modal-body">
@@ -170,10 +175,11 @@ try{
 <?php } 
 include_once FOOTER_FILE;?>
 
-<script>
-    $('#dataTable').DataTable({
-        "language": {
-            "url": "lenguaje.json"
-        }
-    });
-</script>
+<script>$(document).ready(function() {
+  $('#dataTable4').DataTable({
+    "language": {
+      "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+    }
+  });
+
+});</script>

@@ -33,7 +33,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Seleccione "Salir" si quiere cerrar sesión.</div>
+                <div class="modal-body">Seleccione "Salir" para cerrar sesión.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                     <a class="btn btn-primary" href="logoff.php">Salir</a>
@@ -63,11 +63,20 @@
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
+
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     
+
+
+
+
+
+
+
+
    
 </body>
 

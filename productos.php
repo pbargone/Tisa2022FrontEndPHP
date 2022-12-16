@@ -43,6 +43,11 @@ try{
 <?php } ?>    
 <!-- Begin Page Content -->
 <?php if(empty($ErrorMsg)) { ?>
+
+<style>
+ p { color: red; }
+ g { color: green; }
+</style>
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
@@ -63,15 +68,19 @@ try{
                             <h6 class="m-0 font-weight-bold text-primary">Productos registrados 
                             
                             <a class="btn btn-outline-primary" href="index.php?seccion=producto/edt_producto.php&id=0"
-                            data-toggle="tooltip" data-placement="bottom" title=" Crear producto ">
+                            data-toggle="tooltip" data-placement="bottom" title=" Registrar nuevo producto ">
                             <i class="fas fa-box-open"></i>
                                 </a>                    
                             </h6> 
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                               
+                               <link rel="stylesheet" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"/>
+                                <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+                                <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 
+                                <table class="table table-bordered" id="dataTable5" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -79,6 +88,7 @@ try{
                                             <th>Producto</th>
                                             <th>Detalle</th>
                                             <th>Rubro</th>
+                                            <th>Estado</th> 
                                             <th>Acciones</th>
 
                                         </tr>
@@ -90,6 +100,7 @@ try{
                                             <th>Producto</th>
                                             <th>Detalle</th> 
                                             <th>Rubro</th> 
+                                            <th>Estado</th> 
                                             <th>Acciones</th>                          
                                         </tr>
                                     </tfoot>
@@ -103,7 +114,13 @@ try{
 
                                             <td><?php foreach($rubros as $rubro){if($producto->id_rubro==$rubro->id_rubro)echo $rubro->rubro;}?></td>
 
+                                            
+                                            <td><g><?php if($producto->activo == '1') {    echo "Habilitado";}?></g>
+                                                 <p><?php if($producto->activo == '0'){echo "Inhabilitado";}?></p></td>
+
+                                                 
                                             <td>
+
 
                                                <div class=btn-group>
                                                 
@@ -114,35 +131,44 @@ try{
                                                 </a>
                                                 
                                                 
-                                                <a class="btn btn-outline-danger" href="" data-toggle="modal" data-toggle="tooltip"
-                                                data-placement="bottom" title=" Dar de baja producto " data-target="#ModalEditar<?php echo $producto->id_producto;?>">
-                                                <i class="fas fa-trash-alt"> </i>
+                                               <a <?php if($producto->activo == '1') {?> class="btn btn-outline-danger" title=" Dar de baja producto " <?php }else{?> class="btn btn-outline-success" <?php }?> href="" data-toggle="modal" data-toggle="tooltip"
+                                                data-placement="bottom" title=" Dar de alta producto " data-target="#ModalEditar<?php echo $producto->id_producto;?>">
+
+                                                <?php if($producto->activo == '1') {?> <i class="fas fa-trash-alt"> </i><?php }?>
+
+                                                <?php if($producto->activo == '0') {?><i class="fas fa-box"></i><?php }?>
                                                 </a>
+                                              
+
                                                 </div>
                                             </td> 
                                         </tr>  
 
                                         <!-- Modal Borrar -->
-                            <div class="modal fade" id="ModalEditar<?php echo $producto->id_producto; ?>" tabindex="-1" role="dialog">
+                            <div class="modal fade" id="ModalEditar<?php echo $producto->id_producto;?>" tabindex="-1" role="dialog">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title">¿Esta seguro que quiere dar de baja el producto?</h4>
+                                        <?php if($producto->activo == '1') {?> <h4 class="modal-title">¿Esta seguro de querer dar de baja al producto <b><?php echo $producto->producto;?></b>? </h4><?php }?>
+                                        <?php if($producto->activo == '0') {?> <h4 class="modal-title">¿Esta seguro de querer dar de alta al producto <b><?php echo $producto->producto;?></b>?</h4><?php }?>
+                                            
+
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
                                         <div class="modal-body">
-                                            <form method="POST" action="index.php?seccion=producto/producto_save.php&id_producto=<?php echo $producto->id_producto;?>" autocomplete="off" enctype="multipart/form-data">
-
-                                                
+                                            <form method="POST" action="index.php?seccion=producto/producto_save.php&id_producto=<?php echo $producto->id_producto;?>&activo=<?php echo $producto->activo;?>" autocomplete="off" enctype="multipart/form-data">
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-light btn-lg" data-dismiss="modal">Cerrar</button>
-                                                    <button type="submit" class="btn btn-outline-danger btn-lg"><i class="fas fa-trash-alt mr-2"></i>Dar de baja</button>
+
+                                                    <?php if($producto->activo == '1') {?><button type="submit" class="btn btn-outline-danger btn-lg"><i class="fas fa-trash-alt"></i> Dar de baja producto</button><?php }?>
+
+                                                    <?php if($producto->activo == '0') {?><button type="submit" class="btn btn-outline-success btn-lg"><i class="fas fa-box"></i> Dar de alta producto</button><?php }?>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>  
                                     <?php }?>                                      
                                     </tbody>
                                 </table>
@@ -156,10 +182,11 @@ try{
 <?php } 
 include_once FOOTER_FILE;?>
 
-<script>
-    $('#dataTable').DataTable({
-        "language": {
-            "url": "lenguaje.json"
-        }
-    });
-</script>
+<script>$(document).ready(function() {
+  $('#dataTable5').DataTable({
+    "language": {
+      "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+    }
+  });
+
+});</script>

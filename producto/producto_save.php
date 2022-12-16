@@ -19,16 +19,24 @@ try{
 
             $oApi = new API();
             if (empty($_POST["id_producto"])){
-                $oApi->crearproducto($jsonproducto); 
+                $oApi->crearproducto($jsonproducto);
+                $Msg = "Producto creado correctamente"; 
             }else{
                 $oApi->actualizarproducto($jsonproducto); 
+                $Msg = "Producto actualizado correctamente";
             }   
-        }else{
+        }
+         else{
             if (isset($_GET["id_producto"])){
-                
                 $oApi = new API();
-                $oApi->desactivarproducto($_GET["id_producto"]); 
-                $Msg = "El producto se dio de baja correctamente";
+                if($_GET["activo"]==1){
+                    $oApi->desactivarproducto($_GET["id_producto"]);
+                    $Msg = "El producto se inhabilito correctamente";}
+                else{
+                    $oApi->activarproducto($_GET["id_producto"]);
+                    $Msg = "El producto se habilito correctamente";  
+                }
+
             }else{
                 $Msg = "Faltan datos para completar la operación";
             }

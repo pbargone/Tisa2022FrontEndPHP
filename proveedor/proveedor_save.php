@@ -28,20 +28,20 @@ try{
             $oApi = new API();
             if (empty($_POST["id_proveedor"])){
                 $oApi->crearProveedor($jsonProveedor); 
-                $Msg = "Proveedor Creado correctamente";
+                $Msg = "Proveedor creado correctamente";
             }else{
                 $oApi->actualizarProveedor($jsonProveedor); 
-                $Msg = "Proveedor Actualizado correctamente";
+                $Msg = "Proveedor actualizado correctamente";
             }   
         }else{
             if (isset($_GET["id_proveedor"])){
                 $oApi = new API();
                 if($_GET["activo"]==1){
                 $oApi->desactivarProveedor($_GET["id_proveedor"]);
-                $Msg = "El Proveedor se desactivó correctamente";}
+                $Msg = "El proveedor se dio de baja correctamente";}
                 else{
                 $oApi->activarProveedor($_GET["id_proveedor"]);
-                $Msg = "El Proveedor se activó correctamente";  
+                $Msg = "El proveedor se dio de alta correctamente";  
                 }
                 
             }else{
@@ -69,7 +69,7 @@ try{
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Proveedor</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Mensaje</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
